@@ -39,3 +39,21 @@ h1, h2, h3, h4, h5, h6,
   color: #1195bf;
   font-weight: 600;
 }
+
+/* scope variabele voor Unie-blauw */
+:root { --unie-blue: #1195bf; }
+
+/* Alleen de iconen in het startscreen kleuren */
+openai-chatkit::part(start-screen-prompt-icon) {
+  color: var(--unie-blue) !important;
+  fill: var(--unie-blue) !important;
+  stroke: var(--unie-blue) !important;
+}
+
+/* Soms heet de part net anders; deze extra targets dekken varianten af */
+openai-chatkit::part(prompt-icon) {
+  color: var(--unie-blue) !important;
+  fill: var(--unie-blue) !important;
+  stroke: var(--unie-blue) !important;
+}
+
