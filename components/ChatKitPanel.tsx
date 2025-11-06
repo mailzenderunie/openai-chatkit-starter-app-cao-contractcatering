@@ -269,7 +269,7 @@ export function ChatKitPanel({
         accent: { primary: "#1195bf", level: 2 },
       },
       radius: "round",
-      density: "comfortable",
+      density: "normal",
     },
 
     startScreen: {
