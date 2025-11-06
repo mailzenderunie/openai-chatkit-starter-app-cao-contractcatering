@@ -267,17 +267,20 @@ theme: {
   colorScheme: "light",
   color: {
     accent: { primary: "#1195bf", level: 2 },
-    surface: { primary: "#f5f5f5", level: 1 }, // lichte achtergrond
-  },
-  composer: {
-    background: "#f5f5f5",     // invoerbalk lichtgrijs
-    text: "#000000",           // zwarte tekst
-    border: "#e0e0e0",         // subtiele rand
-    border_radius: "round",    // afgerond zoals je nu hebt
   },
   radius: "round",
   density: "normal",
+
+  // 👇 voeg dit toe:
+  components: {
+    composer: {
+      background: "#f5f5f5",
+      border: "#e0e0e0",
+      text: "#000000",
+    },
+  },
 },
+
 
   startScreen: {
     greeting: GREETING,
