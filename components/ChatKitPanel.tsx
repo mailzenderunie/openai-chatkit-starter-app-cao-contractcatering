@@ -274,11 +274,12 @@ export function ChatKitPanel({
 startScreen: {
   greeting: "Hoi! Waarmee kan ik je helpen?",
   prompts: [
-    { text: "Wat kun jij doen?" },
-    { text: "Hoeveel vakantiedagen heb ik?" },
-    { text: "Ik heb een vraag over ziekte of verlof." },
+    "Wat kun jij doen?",
+    "Hoeveel vakantiedagen heb ik?",
+    "Ik heb een vraag over ziekte of verlof."
   ],
 },
+
 
     composer: {
       placeholder: PLACEHOLDER_INPUT,
