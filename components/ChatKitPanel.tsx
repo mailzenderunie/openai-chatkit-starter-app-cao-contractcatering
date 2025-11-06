@@ -271,20 +271,15 @@ export function ChatKitPanel({
       radius: "round",
       density: "normal",
     },
-
-  startScreen: {
-  greeting: "Waarmee kan ik je helpen?",
+startScreen: {
+  greeting: "Hoi! Waarmee kan ik je helpen?",
   prompts: [
-    {
-      title: "Hoeveel vakantiedagen heb ik?",
-      text: "Ik kan je helpen met vragen over je cao, loon, verlof, ziekte, werktijden en meer.",
-    },
-    {
-      title: "Wat zegt de cao over mijn pensioen?",
-      text: "Kies een onderwerp of stel direct je vraag hieronder.",
-    },
+    { text: "Wat kun jij doen?" },
+    { text: "Hoeveel vakantiedagen heb ik?" },
+    { text: "Ik heb een vraag over ziekte of verlof." },
   ],
 },
+
     composer: {
       placeholder: PLACEHOLDER_INPUT,
       attachments: {
