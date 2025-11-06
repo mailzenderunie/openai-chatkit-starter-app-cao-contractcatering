@@ -9,9 +9,15 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "Hoeveel vakantiedagen heb ik?",
     prompt: "Hoeveel vakantiedagen heb ik?",
-    icon: "circle-question",
+    icon: "tree-palm",
+  },
+  {
+    label: "Ik heb een vraag over ziekte of verlof",
+    prompt: "Ik heb een vraag over ziekte of verlof",
+    icon: "user-round-x",
   },
 ];
+
 
 export const PLACEHOLDER_INPUT = "Stel hier je vraag aan de cao Contractcatering...";
 
