@@ -268,7 +268,7 @@ const chatkit = useChatKit({
     color: {
       accent: { primary: "#1195bf", level: 2 },
     },
-    radius: "normal",
+    radius: "sharp",
     density: "normal",
   },
   startScreen: {
