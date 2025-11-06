@@ -9,7 +9,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "Hoeveel vakantiedagen heb ik?",
     prompt: "Hoeveel vakantiedagen heb ik?",
-    icon: "tree-palm",
+    icon: "sun",
   },
   {
     label: "Ik heb een vraag over ziekte of verlof",
