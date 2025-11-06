@@ -264,22 +264,14 @@ export function ChatKitPanel({
 const chatkit = useChatKit({
   api: { getClientSecret },
 theme: {
-  colorScheme: "light",
-  color: {
-    accent: { primary: "#1195bf", level: 2 },
-  },
-  radius: "round",
-  density: "normal",
-
-  // 👇 voeg dit toe:
-  components: {
-    composer: {
-      background: "#f5f5f5",
-      border: "#e0e0e0",
-      text: "#000000",
+    colorScheme: "light",
+    color: {
+      accent: { primary: "#1195bf", level: 2 },
+      background: { "#f5f5f5", level 1 }, 
     },
+    radius: "round",
+    density: "normal",
   },
-},
 
 
   startScreen: {
