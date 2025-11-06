@@ -261,26 +261,20 @@ export function ChatKitPanel({
     [isWorkflowConfigured, setErrorState]
   );
 
-  const chatkit = useChatKit({
-    api: { getClientSecret },
-    theme: {
-      colorScheme: "light",
-      color: {
-        accent: { primary: "#1195bf", level: 2 },
-      },
-      radius: "round",
-      density: "normal",
-    },
-startScreen: {
-  greeting: "Hoi! Waarmee kan ik je helpen?",
-  prompts: [
-    { label: "Wat kun jij doen?" },
-    { label: "Hoeveel vakantiedagen heb ik?" },
-    { label: "Ik heb een vraag over ziekte of verlof." },
-  ],
-},
-
-
+const chatkit = useChatKit({
+  api: { getClientSecret },
+  theme: {
+    colorScheme: "light",
+    color: { accent: { primary: "#1195bf", level: 2 } },
+    radius: "normal",
+    density: "normal",
+  },
+  startScreen: {
+    greeting: GREETING,
+    prompts: STARTER_PROMPTS,   // ← laat dit zo
+  },
+  ...
+});
 
     composer: {
       placeholder: PLACEHOLDER_INPUT,
