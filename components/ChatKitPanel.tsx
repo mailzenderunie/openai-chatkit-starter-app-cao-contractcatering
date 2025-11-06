@@ -265,16 +265,17 @@ const chatkit = useChatKit({
   api: { getClientSecret },
   theme: {
     colorScheme: "light",
-    color: { accent: { primary: "#1195bf", level: 2 } },
+    color: {
+      accent: { primary: "#1195bf", level: 2 },
+    },
     radius: "normal",
     density: "normal",
   },
   startScreen: {
     greeting: GREETING,
-    prompts: STARTER_PROMPTS,   // ← laat dit zo
+    prompts: STARTER_PROMPTS,
   },
-  ...
-});
+
 
     composer: {
       placeholder: PLACEHOLDER_INPUT,
