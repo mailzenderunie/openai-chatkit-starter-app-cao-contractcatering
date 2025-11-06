@@ -268,9 +268,6 @@ theme: {
     color: {
       accent: { primary: "#1195bf", level: 2 },
     },
-  background: {
-     accent: { primary: "#1195bf", level: 2 }, 
-    },
     radius: "round",
     density: "normal",
   },
