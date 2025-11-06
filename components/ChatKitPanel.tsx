@@ -267,7 +267,9 @@ theme: {
     colorScheme: "light",
     color: {
       accent: { primary: "#1195bf", level: 2 },
-      background: { "#f5f5f5", level 1 }, 
+    },
+  background: {
+     accent: { primary: "#1195bf", level: 2 }, 
     },
     radius: "round",
     density: "normal",
