@@ -19,9 +19,9 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
 ];
 
 
-export const PLACEHOLDER_INPUT = "Stel hier je vraag aan de cao Contractcatering...";
+export const PLACEHOLDER_INPUT = "Stel hier je vraag over de cao Contractcatering...";
 
-export const GREETING = "Hoi! Waarmee kan ik je helpen?";
+export const GREETING = "Hoi, ik ben Una! Waarmee kan ik je helpen?";
 
 export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
   color: {
