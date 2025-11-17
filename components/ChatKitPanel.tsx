@@ -62,6 +62,9 @@ export function ChatKitPanel({
   );
   const [widgetInstanceKey, setWidgetInstanceKey] = useState(0);
 
+  // 👉 Toegevoegd: Nederlandse loading-state
+  const [isThinking, setIsThinking] = useState(false);
+
   const setErrorState = useCallback((updates: Partial<ErrorState>) => {
     setErrors((current) => ({ ...current, ...updates }));
   }, []);
@@ -193,7 +196,6 @@ export function ChatKitPanel({
           body: JSON.stringify({
             workflow: { id: WORKFLOW_ID },
             chatkit_configuration: {
-              // enable attachments
               file_upload: {
                 enabled: true,
               },
@@ -216,10 +218,7 @@ export function ChatKitPanel({
           try {
             data = JSON.parse(raw) as Record<string, unknown>;
           } catch (parseError) {
-            console.error(
-              "Failed to parse create-session response",
-              parseError
-            );
+            console.error("Failed to parse create-session response", parseError);
           }
         }
 
@@ -261,34 +260,47 @@ export function ChatKitPanel({
     [isWorkflowConfigured, setErrorState]
   );
 
-const chatkit = useChatKit({
-  api: { getClientSecret },
-theme: {
-    colorScheme: "light",
-    color: {
-      accent: { primary: "#1195bf", level: 2 },
+  const chatkit = useChatKit({
+    api: { getClientSecret },
+    theme: {
+      colorScheme: "light",
+      color: {
+        accent: { primary: "#1195bf", level: 2 },
+      },
+      radius: "round",
+      density: "normal",
     },
-    radius: "round",
-    density: "normal",
-  },
 
-
-  startScreen: {
-    greeting: GREETING,
-    prompts: STARTER_PROMPTS,
-  },
-
+    startScreen: {
+      greeting: GREETING,
+      prompts: STARTER_PROMPTS,
+    },
 
     composer: {
       placeholder: PLACEHOLDER_INPUT,
       attachments: {
-        // Enable attachments
         enabled: true,
       },
     },
     threadItemActions: {
       feedback: false,
     },
+
+    // 👉 Toegevoegd: Nederlandse thinking-state
+    onResponseStart: () => {
+      setIsThinking(true);
+      setErrorState({ integration: null, retryable: false });
+    },
+
+    onResponseEnd: () => {
+      setIsThinking(false);
+      onResponseEnd();
+    },
+
+    onThreadChange: () => {
+      processedFacts.current.clear();
+    },
+
     onClientTool: async (invocation: {
       name: string;
       params: Record<string, unknown>;
@@ -296,9 +308,6 @@ theme: {
       if (invocation.name === "switch_theme") {
         const requested = invocation.params.theme;
         if (requested === "light" || requested === "dark") {
-          if (isDev) {
-            console.debug("[ChatKitPanel] switch_theme", requested);
-          }
           onThemeRequest(requested);
           return { success: true };
         }
@@ -322,18 +331,8 @@ theme: {
 
       return { success: false };
     },
-    onResponseEnd: () => {
-      onResponseEnd();
-    },
-    onResponseStart: () => {
-      setErrorState({ integration: null, retryable: false });
-    },
-    onThreadChange: () => {
-      processedFacts.current.clear();
-    },
+
     onError: ({ error }: { error: unknown }) => {
-      // Note that Chatkit UI handles errors for your users.
-      // Thus, your app code doesn't need to display errors on UI.
       console.error("ChatKit error", error);
     },
   });
@@ -341,18 +340,19 @@ theme: {
   const activeError = errors.session ?? errors.integration;
   const blockingError = errors.script ?? activeError;
 
-  if (isDev) {
-    console.debug("[ChatKitPanel] render state", {
-      isInitializingSession,
-      hasControl: Boolean(chatkit.control),
-      scriptStatus,
-      hasError: Boolean(blockingError),
-      workflowId: WORKFLOW_ID,
-    });
-  }
-
   return (
     <div className="relative pb-8 flex h-[90vh] w-full rounded-2xl flex-col overflow-hidden bg-white shadow-sm">
+
+      {/** 👉 Nederlandse wachttitel toegevoegd */}
+      {isThinking && (
+        <div className="absolute top-3 left-4 z-20 bg-[#eef7ff] text-[#014c7c] px-4 py-2 rounded-lg shadow">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 border-2 border-[#89c2ff] border-t-transparent rounded-full animate-spin" />
+            <span>Even geduld… Ik kijk wat de cao hierover zegt.</span>
+          </div>
+        </div>
+      )}
+
       <ChatKit
         key={widgetInstanceKey}
         control={chatkit.control}
