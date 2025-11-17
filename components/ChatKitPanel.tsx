@@ -345,13 +345,19 @@ export function ChatKitPanel({
 
       {/** 👉 Nederlandse wachttitel toegevoegd */}
       {isThinking && (
-        <div className="absolute top-3 left-4 z-20 bg-[#d6da51] text-[#000000] px-4 py-2 rounded-lg shadow">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 border-2 border-[#89c2ff] border-t-transparent rounded-full animate-spin" />
-            <span>Even geduld… Ik kijk wat de cao hierover zegt.</span>
-          </div>
-        </div>
-      )}
+  <div
+    className="absolute top-3 left-4 z-20 
+               bg-white text-black px-4 py-2 rounded-lg
+               border-2 border-[#1195bf] shadow-sm
+               animate-fadeSlideIn"
+  >
+    <div className="flex items-center gap-2">
+      <div className="w-3 h-3 border-2 border-[#1195bf] border-t-transparent rounded-full animate-spin" />
+      <span>Even geduld… Ik kijk wat de cao hierover zegt.</span>
+    </div>
+  </div>
+)}
+
 
       <ChatKit
         key={widgetInstanceKey}
