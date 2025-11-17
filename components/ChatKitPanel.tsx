@@ -286,20 +286,21 @@ export function ChatKitPanel({
       feedback: false,
     },
 
-    // 👉 Toegevoegd: Nederlandse thinking-state
-    onResponseStart: () => {
-      setIsThinking(true);
-      setErrorState({ integration: null, retryable: false });
-    },
+onResponseStart: () => {
+  setIsThinking(true);
+  setErrorState({ integration: null, retryable: false });
+},
 
-    onResponseChunk: () => {
-    setIsThinking(false);
-    },
+// Zodra het eerste deel van het antwoord binnenkomt → verberg wachttitel
+onThreadMessage: () => {
+  setIsThinking(false);
+},
 
-// Einde kan leeg blijven of alleen jouw originele callback bevatten
-    onResponseEnd: () => {
-    onResponseEnd();
-    },
+// Einde van het antwoord (optioneel)
+onResponseEnd: () => {
+  onResponseEnd();
+},
+
 
     onThreadChange: () => {
       processedFacts.current.clear();
