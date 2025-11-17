@@ -65,6 +65,9 @@ export function ChatKitPanel({
   // 👉 Toegevoegd: Nederlandse loading-state
   const [isThinking, setIsThinking] = useState(false);
 
+    // ⭐ TOEGEVOEGD: message counter om eerste token te detecteren
+  const lastMessageCount = useRef(0);
+
   const setErrorState = useCallback((updates: Partial<ErrorState>) => {
     setErrors((current) => ({ ...current, ...updates }));
   }, []);
@@ -339,6 +342,22 @@ onResponseEnd: () => {
 
   const activeError = errors.session ?? errors.integration;
   const blockingError = errors.script ?? activeError;
+
+   // ⭐ TOEGEVOEGD: zodra AI begint te antwoorden → wachttitel direct weg
+  useEffect(() => {
+    const messages = chatkit?.control?.conversation?.messages;
+    if (!messages) return;
+
+    if (messages.length > lastMessageCount.current) {
+      const last = messages[messages.length - 1];
+
+      if (last?.sender === "assistant") {
+        setIsThinking(false);
+      }
+
+      lastMessageCount.current = messages.length;
+    }
+  }, [chatkit?.control?.conversation?.messages]);
 
   return (
     <div className="relative pb-8 flex h-[90vh] w-full rounded-2xl flex-col overflow-hidden bg-white shadow-sm">
