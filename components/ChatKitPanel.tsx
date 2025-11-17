@@ -291,15 +291,10 @@ onResponseStart: () => {
   setErrorState({ integration: null, retryable: false });
 },
 
-// Zodra het eerste deel van het antwoord binnenkomt → verberg wachttitel
-onThreadMessage: () => {
+onResponseEnd: () => {
   setIsThinking(false);
 },
 
-// Einde van het antwoord (optioneel)
-onResponseEnd: () => {
-  onResponseEnd();
-},
 
 
     onThreadChange: () => {
