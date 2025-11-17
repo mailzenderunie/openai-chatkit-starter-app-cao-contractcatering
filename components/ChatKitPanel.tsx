@@ -348,11 +348,11 @@ onResponseEnd: () => {
   <div
     className="absolute top-3 left-4 z-20 
                bg-white text-black px-4 py-2 rounded-lg
-               border-2 border-[#1195bf]
+               border-1 border-[#1195bf]
                animate-fadeSlideIn"
   >
     <div className="flex items-center gap-2">
-      <div className="w-3 h-3 border-2 border-[#1195bf] border-t-transparent rounded-full animate-spin" />
+      <div className="w-3 h-3 border-1 border-[#1195bf] border-t-transparent rounded-full animate-spin" />
       <span>Even geduld… Ik kijk wat de cao hierover zegt.</span>
     </div>
   </div>
