@@ -292,9 +292,13 @@ export function ChatKitPanel({
       setErrorState({ integration: null, retryable: false });
     },
 
+    onResponseChunk: () => {
+    setIsThinking(false);
+    },
+
+// Einde kan leeg blijven of alleen jouw originele callback bevatten
     onResponseEnd: () => {
-      setIsThinking(false);
-      onResponseEnd();
+    onResponseEnd();
     },
 
     onThreadChange: () => {
@@ -348,7 +352,7 @@ export function ChatKitPanel({
   <div
     className="absolute top-3 left-4 z-20 
                bg-white text-black px-4 py-2 rounded-lg
-               border-2 border-[#1195bf] shadow-sm
+               border-2 border-[#1195bf]
                animate-fadeSlideIn"
   >
     <div className="flex items-center gap-2">
